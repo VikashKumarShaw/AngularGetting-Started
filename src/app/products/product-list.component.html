@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-md-2">Filter by : </div>
             <div class="col-md-4">
-                <input type="text" 
-                [(ngModel)] = "listFilter"/>
+                <input type="text"
+                       [(ngModel)]="listFilter" />
             </div>
         </div>
         <div class="row">
@@ -21,11 +21,11 @@
                    *ngIf="products && products.length">
                 <thead>
                     <tr>
-                      
-                            <button class="btn btn-primary"
-                                    (click)="toggleImage()">
-                                {{showImage ? "Hide " : "Show "}}Images
-                                </button>
+
+                        <button class="btn btn-primary"
+                                (click)="toggleImage()">
+                            {{showImage ? "Hide " : "Show "}}Images
+                            </button>
                     </tr>
                     <tr>
                         <th>Product</th>
@@ -36,7 +36,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let product of products'>
+                    <tr *ngFor='let product of filteredProducts'>
                         <td>
                             <img *ngIf="showImage"
                                  [src]="product.imageUrl"
@@ -45,10 +45,9 @@
                                  [style.margin.px]="imageMargin">
                                 {{product.productName}}
                         </td>
-                        <td>{{product.productCode}}</td>
+                        <td>{{product.productCode | ConvertToSpaces : "-"}}</td>
                         <td>{{product.releaseDate}}</td>
-                        <td>{{product.price |currency : 'INR' : 
-                            'symbol' : '1.2-4'}}</td>
+                        <td>{{product.price |currency : 'INR' : 'symbol' : '1.2-4'}}</td>
                         <td>{{product.starRating}}</td>
                     </tr>
 
